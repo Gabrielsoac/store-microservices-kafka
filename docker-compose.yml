@@ -58,7 +58,7 @@ services:
       - orchestrator-saga
     environment:
       - POSTGRES_DB=product
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     ports:
       - "5432:5432"
@@ -70,7 +70,7 @@ services:
       - orchestrator-saga
     environment:
       - POSTGRES_DB=payment
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     ports:
       - "5433:5432"
@@ -82,7 +82,7 @@ services:
       - orchestrator-saga
     environment:
       - POSTGRES_DB=inventory
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     ports:
       - "5434:5432"

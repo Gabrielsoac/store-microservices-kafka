@@ -40,9 +40,8 @@ services:
       - "kafka"
 
   order-db:
-    image: mongo:8
+    image: mongo:7
     container_name: order-db
-    restart: always
     networks:
       - orchestrator-saga
     environment:

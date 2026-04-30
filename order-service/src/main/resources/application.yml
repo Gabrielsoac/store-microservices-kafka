@@ -2,7 +2,6 @@ server:
   port: 3000
 
 spring:
-
   kafka:
     bootstrap-servers: ${KAFKA_BROKER:localhost:9092}
     topic:

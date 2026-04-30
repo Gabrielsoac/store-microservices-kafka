@@ -3,6 +3,16 @@ server:
 
 spring:
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:localhost:9092}
+    topic:
+      product-validation-success: payment-success
+      product-validation-fail: payment-fail
+      orchestrator: orchestrator
+    consumer:
+      group-id: payment-group
+      auto-offset-reset: latest
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${DB_HOST:localhost}:${PRODUCT_DB_PORT:5433}/${PRODUCT_DB_NAME:payment}
@@ -15,3 +25,9 @@ spring:
       properties:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org:
+      apache:
+        kafka: OFF

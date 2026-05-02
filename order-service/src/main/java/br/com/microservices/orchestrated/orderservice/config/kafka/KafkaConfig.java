@@ -30,13 +30,13 @@ public class KafkaConfig {
     private static final Integer PARTITION_COUNT = 1;
     private static final Integer REPLICA_COUNT = 1;
 
-    @Value("${string.kafka.bootstrap-servers}")
+    @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
     
-    @Value("${string.kafka.consumer.group-id}")
+    @Value("${spring.kafka.consumer.group-id}")
     private String groupId;
     
-    @Value("${string.kafka.consumer.auto-offset-reset}")
+    @Value("${spring.kafka.consumer.auto-offset-reset}")
     private String autoOffsetReset;
 
     @Value("${spring.kafka.topic.start-saga}")
@@ -95,7 +95,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public NewTopic nofityEndingTopic() {
+    public NewTopic notifyEndingTopic() {
         return buildTopic(notifyEndingTopic);
     }
 }

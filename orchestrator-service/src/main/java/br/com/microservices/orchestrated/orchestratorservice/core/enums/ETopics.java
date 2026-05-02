@@ -1,8 +1,7 @@
-package br.com.microservices.orchestrated.orchestratorservice;
+package br.com.microservices.orchestrated.orchestratorservice.core.enums;
 
 import lombok.Getter;
 
-@Getter
 public enum ETopics {
 
     START_SAGA("start-saga"),
@@ -22,9 +21,14 @@ public enum ETopics {
 
     NOTIFY_ENDING("notify-ending");
 
-    private String topic;
-
     ETopics(String topic){
         this.topic = topic;
     }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    private String topic;
+
 }

@@ -30,22 +30,22 @@ public class KafkaConfig {
     private final Integer REPLICA_COUNT = 1;
     private final Integer PARTITION_COUNT = 1;
 
-    @Value("${string.kafka.bootstrap-servers}")
+    @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
     
-    @Value("${string.kafka.consumer.group-id}")
+    @Value("${spring.kafka.consumer.group-id}")
     private String groupId;
     
-    @Value("${string.kafka.consumer.auto-offset-reset}")
+    @Value("${spring.kafka.consumer.auto-offset-reset}")
     private String autoOffsetReset;
 
-    @Value("${string.kafka.topic.product-validation-success}")
+    @Value("${spring.kafka.topic.product-validation-success}")
     private String productValidationSuccessTopic;
 
-    @Value("${string.kafka.topic.product-validation-fail}")
+    @Value("${spring.kafka.topic.product-validation-fail}")
     private String productValidationFailTopic;
 
-    @Value("${string.kafka.topic.orchestrator}")
+    @Value("${spring.kafka.topic.orchestrator}")
     private String orchestratorTopic;
     
     @Bean
@@ -55,7 +55,6 @@ public class KafkaConfig {
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
-        
         return new DefaultKafkaProducerFactory<>(producerProperties());    
     }
 

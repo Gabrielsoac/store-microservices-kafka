@@ -1,7 +1,6 @@
-package br.com.microservices.orchestrated.orchestratorservice.core.dto;
+package br.com.microservices.orchestrated.productvalidationservice.core.dto;
 
-import br.com.microservices.orchestrated.orchestratorservice.core.enums.EEventSource;
-import br.com.microservices.orchestrated.orchestratorservice.core.enums.ESagaStatus;
+import br.com.microservices.orchestrated.productvalidationservice.core.enums.ESagaStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +19,7 @@ public class Event {
     private String transactionalId;
     private String orderId;
     private Order payload;
-    private EEventSource source;
+    private String source;
     private ESagaStatus status;
     private List<History> eventHistory;
     private LocalDateTime createdAt;

@@ -1,6 +1,6 @@
 package br.com.microservices.orchestrated.paymentservice.core.utils;
 
-import br.com.microservices.orchestrated.orderservice.core.document.Event;
+import br.com.microservices.orchestrated.paymentservice.core.dto.Event;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 

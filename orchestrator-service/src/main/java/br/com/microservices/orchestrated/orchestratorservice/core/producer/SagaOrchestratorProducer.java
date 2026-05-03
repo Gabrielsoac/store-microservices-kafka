@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class SagaOrchestratorProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
-    
+
     public void sendEvent(String payload, String topic){
         try {
             log.info("Sending event to topic {} with data {}", topic, payload);

@@ -14,14 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collation = "order")
+@Document(collection = "order")
 public class Order {
 
     @Id
     private String id;
     private List<OrderProducts> products;
     private LocalDateTime createdAt;
-    private String transactionalId;
+    private String transactionId;
 
     private double totalAmount;
     private int totalItems;

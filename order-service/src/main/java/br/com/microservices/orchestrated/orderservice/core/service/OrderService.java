@@ -1,0 +1,46 @@
+package br.com.microservices.orchestrated.orderservice.core.service;
+
+import br.com.microservices.orchestrated.orderservice.core.document.Event;
+import br.com.microservices.orchestrated.orderservice.core.document.Order;
+import br.com.microservices.orchestrated.orderservice.core.dto.OrderRequest;
+import br.com.microservices.orchestrated.orderservice.core.producer.SagaProducer;
+import br.com.microservices.orchestrated.orderservice.core.repository.OrderRepository;
+import br.com.microservices.orchestrated.orderservice.core.utils.JsonUtil;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Service
+@AllArgsConstructor
+public class OrderService {
+
+    private final EventService eventService;
+    private final OrderRepository orderRepository;
+    private final SagaProducer producer;
+    private final JsonUtil jsonUtil;
+    private static final String TRANSACTION_ID_PATTERN = "%s_%s";
+
+    public Order createOrder(OrderRequest orderRequest){
+        Order order = Order.builder()
+                .products(orderRequest.getProducts())
+                .createdAt(LocalDateTime.now())
+                .transactionalId(String.format(TRANSACTION_ID_PATTERN, Instant.now().toEpochMilli(), UUID.randomUUID()))
+                .build();
+        orderRepository.save(order);
+        Event payload = createPayload(order);
+        producer.sendEvent(jsonUtil.jsonToString(payload));
+        return order;
+    }
+
+    public Event createPayload(Order order){
+        var event = Event.builder().orderId(order.getId())
+                .transactionalId(order.getTransactionalId())
+                .payload(order)
+                .createdAt(LocalDateTime.now())
+                .build();
+        return eventService.save(event);
+    }
+}
